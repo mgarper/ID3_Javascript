@@ -26,7 +26,6 @@ console.log(getMonthName(month) + "\n");
 // Variante 2
 
 month = 12;
-monthName;
 
 if (month === 1) {
   monthName = "January";

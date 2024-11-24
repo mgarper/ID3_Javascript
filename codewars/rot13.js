@@ -48,5 +48,3 @@ function rot13(message) {
   }
   return res;
 }
-
-console.log(rot13("2,n^}{T_Kvi-y"));
