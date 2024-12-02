@@ -44,6 +44,8 @@ function filterTasks(list) {
   console.log(pendingTasks);
 }
 
+filterTasks(taskList);
+
 /*
  3. Dado el listado de frutas que ponemos a continuación, recórrelo y crea otro array de igual longitud donde en cada elemento, aparezca el nombre de la fruta y si crece o no en un árbol.
    - Las que crecen en los árboles son las manzanas, las peras, las granadas y los plátanos.

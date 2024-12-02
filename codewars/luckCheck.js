@@ -65,3 +65,44 @@ function luckCheck(ticket) {
   //Si termina la ejecución de ambos bloques, comprobamos si sum1 y sum2 son iguales
   return sum1 == sum2;
 }
+
+function sumPairs(ints, s) {
+  let res;
+  if (ints.length >= 2) {
+    res = [0, 0];
+    let left = 0;
+    let right = 1;
+    let min = 100000000;
+    while (left < min) {
+      //console.log([ints[left], ints[right]]);
+      if (ints[left] + ints[right] === s && right < min) {
+        min = right;
+        res = [ints[left], ints[right]];
+        left++;
+        right = left + 1;
+      } else {
+        if (right === ints.length) {
+          left++;
+          right = left + 1;
+        } else if (left === ints.length) {
+          left = min;
+        } else {
+          right++;
+        }
+      }
+    }
+    if (min === 100000000) {
+      res = undefined;
+    }
+  }
+  return res;
+}
+
+console.log(sumPairs([10, 5, 2, 3, 7, 5], 10));
+/**
+ * [1,4]
+ * [1,8]
+ * [1,7] --> 3
+ * [4,8] --> 3
+ * [4,7]
+ */
