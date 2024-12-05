@@ -13,7 +13,6 @@ function calculateTotalPrice(list) {
   list.forEach((element) => {
     totalPrice += element.price * element.quantity;
   });
-  console.log(totalPrice);
 }
 calculateTotalPrice(shoppingCart);
 
@@ -38,10 +37,6 @@ function filterTasks(list) {
       completedTasks.push(element);
     }
   });
-  console.log(`Tasks that are completed:`);
-  console.log(completedTasks);
-  console.log(`Tasks that are pending:`);
-  console.log(pendingTasks);
 }
 
 filterTasks(taskList);
@@ -76,6 +71,33 @@ function showTreeOrNotTreeFruit(list) {
 
 console.log(showTreeOrNotTreeFruit(frutas));
 
+/** 3 BIS */
+const treeFruits = ["manzana", "pera", "granada", "platano"];
+
+function showNotTreeFruit(element) {
+  return !treeFruits.includes(element);
+}
+
+function showTreeFruit(element) {
+  return treeFruits.includes(element);
+}
+
+console.log(frutas);
+console.log("No crecen en árbol: " + frutas.filter(showNotTreeFruit));
+console.log("Crecen en árbol: " + frutas.filter(showTreeFruit));
+
+console.log(
+  frutas.map((fruit) => {
+    return { fruitName: fruit, growsInTree: treeFruits.includes(fruit) };
+  })
+);
+
+console.log(
+  frutas.find((element) => {
+    return !treeFruits.includes(element);
+  })
+);
+
 /* 
    4. Dado el carrito de la compra del ejercicio 1, transforma ese array en otro que contenga además los impuestos. Por ejemplo, el primer elemento será:
 	  { product: 'Red wine', price: 20, quantity: 1, taxes: 2 }
@@ -93,8 +115,6 @@ function addTaxes(list) {
   });
   return res;
 }
-
-console.log(addTaxes(shoppingCart));
 
 /*
    5. Dado el carrito de la compra del ejercicio 1, implementa una función que permita eliminar una unidad de producto del carrito de la compra basándose 
@@ -117,5 +137,17 @@ function removeProduct(list, product) {
   return res;
 }
 
-console.log(removeProduct(shoppingCart, "Red wine"));
-console.log(removeProduct(shoppingCart, "Tiramisú"));
+/**FUNCION DEL EJERCICIO PROPUESTO POR JOSMI */
+function filterArray(list, func) {
+  let res = [];
+  list.forEach((element) => {
+    if (func(element, list.indexOf(element))) {
+      res.push(element);
+    }
+  });
+  return res;
+}
+
+function isCompleted(task, index) {
+  return task.status === "Completada";
+}
