@@ -41,7 +41,6 @@ function rot13(message) {
         res += alph[finPos];
       }
     } else {
-      console.log("AYO");
       res += message.charAt(i);
     }
     i++;

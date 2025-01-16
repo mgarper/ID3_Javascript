@@ -1,4 +1,4 @@
-function formatDuration(seconds) {
+export function formatDuration(seconds) {
   if (seconds) {
     let sec = seconds;
     let min = 0;
