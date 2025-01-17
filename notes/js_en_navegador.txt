@@ -1,0 +1,4 @@
+<script src="./ruta_del_fichero.js"></script>
+
+document.querySelector('')
+document.querySelectorAll('')
