@@ -1,0 +1,32 @@
+body {
+    margin: 0 auto;
+    text-align: center;
+}
+
+img {
+    width: 120px;
+    height: 120px;
+    border-radius: 6px;
+}
+
+.gallery {
+    margin: 6px 0 0 0;
+}
+
+.card {
+    display: inline-block;
+    width: 240px;
+    border: 1px solid;
+    border-radius: 6px;
+    margin: 6px 6px 6px 6px;
+    padding: 10px;
+}
+
+.counter {
+    margin-bottom: 10px;
+}
+
+.voting-buttons {
+    display: inline-block;
+    width: calc(50% - 12px)
+}
