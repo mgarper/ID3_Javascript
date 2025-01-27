@@ -9,6 +9,10 @@ img {
     border-radius: 6px;
 }
 
+.div-margin {
+    margin: 10px 0 10px 0;
+}
+
 .gallery {
     margin: 6px 0 0 0;
 }

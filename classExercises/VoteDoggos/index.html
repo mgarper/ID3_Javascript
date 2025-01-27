@@ -2,16 +2,32 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./src/doge-icon-19-902844163.jpg">
     <script src="./js/api.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vote this doggos</title>
 </head>
 <body>
-    <h1>Vote this doggos</h1>
+    <h1>VOTE THIS DOGGOS</h1>
+    <div class="div-margin">
+        <p>Please select where to add the images:</p>
+        <input type="radio" id="beginning" name="adding_position" value="beginning">
+        <label for="beginning">Add to beginning</label>
+        <input type="radio" id="ending" name="adding_position" value="end" checked="true">
+        <label for="ending">Add to end</label>
+    </div>
     <div>
         <button id="addOne">Add 1 doggo</button>
         <button id="addFive">Add 5 doggos</button>
+    </div>
+    <div class="div-margin" id="filter-div">
+        <p>Choose your filter: </p>
+        <select name="filter" id="filter">
+            <option value="All">All doggos</option>
+            <option value="Cute">Cute doggos</option>
+            <option value="Ugly">Ugly doggos</option>
+        </select>
     </div>
     <div class="gallery">
         <!-- <div class="card">
