@@ -1,6 +1,17 @@
 <html>
-  <head> </head>
+  <head> 
+    <title>Tasklist Anti-furros</title>
+    <link rel="shortcut icon" href="./src/a170b9ec8f783ff197f17bcc53048f72.jpg" type="image/x-icon">
+  </head>
   <style>
+    .input {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
     .buttons {
       display: flex;
       gap: 12px;
@@ -29,13 +40,17 @@
     }
   </style>
   <body class="content">
-    <div class="buttons">
+    <form id="create-task">
+      <input type="text" placeholder="Tarea" />
+      <button disabled>Enviar</button>
+    </form>
+    <!-- <div class="buttons">
       <button id="regenate">Regenerar listado</button>
       <button id="add-first">Añadir al principio</button>
       <button id="add-last">Añadir al final</button>
-    </div>
+    </div> -->
     <div id="tasks">
-      <div class="task">
+      <!-- <div class="task">
         <span class="completed">Tarea random 1</span> -
         <span class="status">completed</span>
       </div>
@@ -46,7 +61,7 @@
       <div class="task">
         <span class="completed">Tarea random 3</span> -
         <span class="status">completed</span>
-      </div>
+      </div> -->
     </div>
   </body>
   <script src="./index.js"></script>
