@@ -3,6 +3,23 @@ let dogList =  []
 let index = 0
 let automaticDogsCount = 0
 
+async function selectSetUp() { 
+    let breeds = await listAllBreeds()
+    let keys = Object.keys(breeds)
+    keys.forEach((element) => {
+        let firstName = element.charAt(0).toUpperCase() + element.slice(1)
+      if (breeds[element].length === 0) {
+        document.querySelector("#breeds").innerHTML += `<option value="${element}">${firstName}</option>`
+      } else {
+        breeds[element].forEach((subElement) => {
+          let secondName = subElement.charAt(0).toUpperCase() + subElement.slice(1)
+          document.querySelector("#breeds").innerHTML += `<option value="${element}/${subElement}">${firstName} ${secondName}</option>`
+        })
+      }
+    })
+    console.log(breeds)
+}
+
 function renderDogImages(beginning) {
     let auxList = dogList.slice(beginning)
     auxList.forEach((element) => {
@@ -81,39 +98,52 @@ function filterByVote() {
 }
 
 let addDog = async () => {
-    dogList.push(await fetchRandomDogImage())
-    console.log(dogList)
+    if(document.querySelector("#breeds").value === "All") { 
+        dogList.push(await fetchRandomDogImage())
+    } else {
+        dogList.push(await fetchRandomDogBreedImage(document.querySelector("#breeds").value))
+    }
 }
 
 renderDogImages(index)
 
 // Interval for adding a dog every 10 seconds
-const intervalId = setInterval(async () => {
-    await addDog()
-    automaticDogsCount++
-    renderDogImages(index)
-    filterByVote()
-}, 10000)
+// const intervalId = setInterval(async () => {
+//     await addDog()
+//     automaticDogsCount++
+//     renderDogImages(index)
+//     filterByVote()
+// }, 10000)
 
-const timeOutId = setTimeout(() => {
-    let message = "Click on the buttons below to add some doggos!"
-    document.querySelector("#title").outerHTML += `<h3 style="color: red">${message}</h3>`
-}, 15000)
+// const timeOutId = setTimeout(() => {
+//     let message = "Click on the buttons below to add some doggos!"
+//     document.querySelector("#title").outerHTML += `<h3 style="color: red">${message}</h3>`
+// }, 15000)
 
 // Listener for the add one dog button
 document.querySelector("#addOne").addEventListener("click", async () => {
-    clearTimeout(timeOutId)
+    //clearTimeout(timeOutId)
+    document.querySelector("#addOne").disabled = true
+    document.querySelector("#addFive").disabled = true
     await addDog()
     renderDogImages(index)
+    document.querySelector("#addOne").disabled = false
+    document.querySelector("#addFive").disabled = false
 })
 
 // Listener for the add five dogs button
 document.querySelector("#addFive").addEventListener("click", async () => {
-    clearTimeout(timeOutId)
+    //clearTimeout(timeOutId)
+    document.querySelector("#addOne").disabled = true
+    document.querySelector("#addFive").disabled = true
     for (let i = 0; i < 5; i++){
         await addDog()
     }
     renderDogImages(index)
+    document.querySelector("#addOne").disabled = false
+    document.querySelector("#addFive").disabled = false
 })
 
 document.querySelector("#filter").addEventListener("change", filterByVote)
+
+selectSetUp()

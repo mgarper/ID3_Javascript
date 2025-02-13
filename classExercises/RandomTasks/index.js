@@ -149,6 +149,17 @@ document.querySelector('#create-task input').addEventListener('input', () => {
   }
 });
 
+document.querySelector('#show-completed').addEventListener('change', () => {
+  const tasks = document.querySelectorAll('.task');
+  tasks.forEach((task) => {
+    if (document.querySelector('#show-completed').checked) {
+      task.style.display = task.querySelector('.status').innerHTML === 'completed' ? 'block' : 'none';
+    } else {
+      task.style.display = 'block';
+    }
+  });
+});
+
 // event listeners para que los botones llamen a las funciones anteriores
 // document.querySelector('#regenate').addEventListener('click', () => {
 //   regenerateArray();
