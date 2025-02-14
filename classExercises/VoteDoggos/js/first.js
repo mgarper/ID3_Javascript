@@ -1,9 +1,14 @@
 const gallery = document.querySelector(".gallery")
 let dogList =  []
+let breedList = []
 let index = 0
+let breedIndex = 0
 let automaticDogsCount = 0
 
 async function selectSetUp() { 
+    if (breedList.length === 0) {
+        document.querySelector("#breeds-filter").style.display = "none"
+    }
     let breeds = await listAllBreeds()
     let keys = Object.keys(breeds)
     keys.forEach((element) => {
@@ -20,13 +25,31 @@ async function selectSetUp() {
     console.log(breeds)
 }
 
+function breedFilterSetUp(breed) {
+    document.querySelector("#breeds-filter").style.display = "inline-block"
+    if (!breedList.includes(breed)) {
+        breedList.push(breed)
+        if (breed.includes("/")) {
+            let names = breed.split("/")
+            let name = names[0].charAt(0).toUpperCase() + names[0].slice(1)
+            let surname = names[1].charAt(0).toUpperCase() + names[1].slice(1)
+            document.querySelector("#breeds-filter").innerHTML += `<option value="${breed}">${name} ${surname}</option>`
+        } else {
+            let name = breed.charAt(0).toUpperCase() + breed.slice(1)
+            document.querySelector("#breeds-filter").innerHTML += `<option value="${breed}">${name}</option>`
+        }
+    }
+}
+
 function renderDogImages(beginning) {
     let auxList = dogList.slice(beginning)
     auxList.forEach((element) => {
         let card = document.createElement("div");
+        const match = element.match(/https:\/\/images\.dog\.ceo\/breeds\/(.*?)\//);
+        const result = match ? match[1].replace(/-/g, "/") : null;
         card.classList.add("card");
         card.innerHTML = `
-            <img src="${element}" alt="">
+            <img src="${element}" alt="${result}">
             <div class="counter">
                 <div>🤮 0</div>
                 <div>💘 0</div>
@@ -36,6 +59,7 @@ function renderDogImages(beginning) {
                 <button class="voting-buttons js-ugly">Ugly ahh boi</button>
             </div>
         `
+        breedFilterSetUp(result)
 
         if(document.querySelector("#ending").checked) {
             gallery.appendChild(card)
@@ -97,6 +121,21 @@ function filterByVote() {
     }
 }
 
+function filterByBreed() {
+    let selector = document.querySelector("#breeds-filter").value
+    let cards = document.querySelectorAll(".card")
+    cards.forEach((element) => {
+        let alt = element.querySelector("img").alt
+        if (selector === "All") {
+            element.style.display = "inline-block"
+        } else if (alt === selector) {
+            element.style.display = "inline-block"
+        } else {
+            element.style.display = "none"
+        }
+    })
+}
+
 let addDog = async () => {
     if(document.querySelector("#breeds").value === "All") { 
         dogList.push(await fetchRandomDogImage())
@@ -145,5 +184,6 @@ document.querySelector("#addFive").addEventListener("click", async () => {
 })
 
 document.querySelector("#filter").addEventListener("change", filterByVote)
+document.querySelector("#breeds-filter").addEventListener("change", filterByBreed)
 
 selectSetUp()

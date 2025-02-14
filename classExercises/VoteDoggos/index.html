@@ -27,12 +27,20 @@
         </select>
     </div>
     <div class="div-margin" id="filter-div">
-        <p>Choose your filter: </p>
-        <select name="filter" id="filter">
-            <option value="All">All doggos</option>
-            <option value="Cute">Cute doggos</option>
-            <option value="Ugly">Ugly doggos</option>
-        </select>
+        <div style="display: inline-block;">
+            <p>Filter by vote</p>
+            <select name="filter" id="filter">
+                <option value="All">All doggos</option>
+                <option value="Cute">Cute doggos</option>
+                <option value="Ugly">Ugly doggos</option>
+            </select>
+        </div>
+        <div style="display: inline-block;">
+            <p>Filter by breed</p>
+            <select name="breeds-filter" id="breeds-filter">
+                <option value="All">All</option>
+            </select>
+        </div>
     </div>
     <div class="gallery">
         <!-- <div class="card">
@@ -50,3 +58,4 @@
 </body>
 <script src="./js/first.js"></script>
 </html>
+
