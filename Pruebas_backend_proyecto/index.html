@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <div class="heading">
+            <h4>DashFlow</h4>
+        </div>
+        <ul class="nav-links">
+            <li><a class="active" href="index.html">Home</a></li>
+        </ul>
+    </nav>
+    <div class="charts-wrapper">
+        <div class="chart-container main">
+            <canvas id="timeSeriesChart"></canvas>
+        </div>
+    </div>
+    <div class="charts-wrapper">
+        <div class="chart-container">
+            <canvas id="pieChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+    <div class="gallery">
+    </div>
+</body>
+<script src="./balance_randomizer.js"></script>
+</html>
